@@ -55,7 +55,7 @@ io.sockets.on('connection', socket => {
   updateUsernames();
   socket.emit('set username', socket.username);
   socket.emit('update history', messageHistory);
-  socket.emit('system message', "You are now known as <b>" + socket.username + "</b>");
+  socket.emit('system message', 'green', "You are now known as <b>" + socket.username + "</b>");
 
   // handle disconnect
   socket.on('disconnect', data => {
@@ -76,39 +76,40 @@ io.sockets.on('connection', socket => {
         // handle changing color
         case 'color':
           if (args.length != 2) {
-            socket.emit('system message', "Usage: <b>/color RRGGBB</b>")
+            socket.emit('system message', 'green', "Usage: <b>/color RRGGBB</b>")
           } else {
             color = args[1];
             if (color.length != 6) {
-              socket.emit('system message', "Invalid color entered: <b>" + color + "</b>")
+              socket.emit('system message', 'red', "Invalid color entered: <b>" + color + "</b>")
             } else {
               socket.color = "#" + color;
               updateColors(socket.username, color);
               io.sockets.emit('update history', messageHistory);
-              socket.emit('system message', `Updated color to: <b style="color: #${color};">` + color.toUpperCase() + "</b>")
+              socket.emit('system message', 'green', `Updated color to: <b style="color: #${color};">` + color.toUpperCase() + "</b>")
             }
           }
           return;
         // handle changing nickname
-        case 'nick':
+        case 'name':
           if (args.length != 2) {
-            socket.emit('system message', "Usage: <b>/nick (new name)</b>")
+            socket.emit('system message', 'green', "Usage: <b>/name (new name)</b>")
           } else {
             newName = args[1];
             if (users.includes(newName)) {
-              socket.emit('system message', "<b>Error:</b> Nickname already taken")
+              socket.emit('system message', 'red', "Nickname <b>" + newName + "</b> already taken")
             } else {
               users.splice(users.indexOf(socket.username), 1);
               users.push(newName);
               socket.username = newName;
               updateUsernames();
               socket.emit('set username', socket.username);
-              socket.emit('system message', "Updated nickname to <b>" + newName + "</b>")
+              socket.emit('cookie', 'username=' + socket.username + '; max-age=300');
+              socket.emit('system message', 'green', "Updated nickname to <b>" + newName + "</b>")
             }
           }
           return;
         default:
-          socket.emit('system message', "Unknown command: <b>" + data + "</b>");
+          socket.emit('system message', 'red', "Unknown command: <b>" + data + "</b>");
           return;
       }
     }

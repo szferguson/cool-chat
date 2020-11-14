@@ -27,7 +27,7 @@ function appendMessage(data) {
         formattedColor = data.color != "#7b7a7f" ? data.color : "#fff"
         var string = `<div class="flex justify-end">
                 <div class="bg-blue-400 text-white p-4 mt-4 w-3/4 rounded-xl border-2 border-blue-500 shadow-lg">
-                    <p class="font-bold pr-1" style="color: ${formattedColor};">${chosenUsername}</p>
+                    <p class="font-bold pr-1 truncate ..." style="color: ${formattedColor};">${chosenUsername}</p>
                     <div class="flex justify-between items-end">
                         <p>${data.msg}</p>
                         <p class="font-thin text-right text-white">${humanTime}</p>
@@ -37,7 +37,7 @@ function appendMessage(data) {
     } else {
         var string = `
         <div class="bg-white text-gray-700 p-4 mt-4 w-3/4 rounded-xl border-2 shadow-lg">
-            <p class="font-bold pr-1" style="color: ${data.color};">${data.user}</p>
+            <p class="font-bold pr-1 truncate ..." style="color: ${data.color};">${data.user}</p>
             <div class="flex justify-between">
                 <p>${data.msg}</p>
                 <p class="font-thin text-right text-gray-500">${humanTime}</p>
@@ -52,7 +52,7 @@ function appendMessage(data) {
 socket.on('get users', function(data){
     var html = '';
     data.forEach(member => {
-        html += `<p class="text-white opacity-50 text-sm">${member}</p>`
+        html += `<p class="text-white opacity-50 text-sm truncate ...">${member}</p>`
     });
     users.html(html);
 });
@@ -68,9 +68,9 @@ socket.on('set username', (username) => {
 });
 
 // handle incoming system messages
-socket.on('system message', (msg) => {
+socket.on('system message', (color, msg) => {
     var string = `<div class="flex">
-                <div class="bg-green-400 text-white p-4 mt-4 w-3/4 rounded-xl border-2 border-green-500 shadow-lg">
+                <div class="bg-${color}-400 text-white p-4 mt-4 w-3/4 rounded-xl border-2 border-${color}-500 shadow-lg">
                     <p class="font-bold pr-1">System</p>
                     <div class="flex justify-between items-end">
                         <p>${msg}</p>

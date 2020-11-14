@@ -6,68 +6,61 @@
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <div class="h-screen flex">
-      <!-- Chat content -->
-      <div class="flex-1 flex flex-col bg-white overflow-hidden">
-          <!-- Top bar -->
-          <header class="bg-blue-500 py-4 text-center text-2xl font-medium text-white border-b-4 border-blue-600">
-            Cool Chat
-        </header>
-          <!-- Chat messages -->
-          <div class="px-6 py-4 flex-1 bg-blue-100  overflow-y-scroll" id="chat">
-
-          </div>
-          <form id="messageForm">
-          <div class="pb-4 px-4 flex-none bg-blue-100 ">
-              <div class="flex rounded-lg border-2 border-grey overflow-hidden">
-                  <input type="text" id="message" class="w-full h-12 px-4" placeholder="Enter message" />
-              </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="bg-gray-800 text-purple-lighter flex-none w-64 pb-6">
-        <div class="text-white mb-2 mt-3 px-4">
-            <div class="ml-5">
-                <h1 class="font-semibold text-xl leading-tight mb-1 pt-5">Member List</h1>
-                <div id="users">
+    <div style="max-width: 960px; margin: 0 auto;">
+      <div class="h-screen flex">
+        <!-- chat area -->
+        <div class="flex-1 flex flex-col bg-white overflow-hidden">
+            <!-- chat header -->
+            <header class="bg-blue-500 py-4 text-center text-2xl font-medium text-white border-b-4 border-blue-600">
+              Cool Chat
+          </header>
+            <!-- messages -->
+            <div class="px-6 py-4 flex-1 bg-blue-100  overflow-y-scroll" id="chat"></div>
+            <form id="messageForm">
+            <div class="pb-4 px-4 flex-none bg-blue-100 ">
+                <div class="flex rounded-lg border-2 border-grey overflow-hidden">
+                    <input type="text" id="message" class="w-full h-12 px-4" placeholder="Enter message" />
                 </div>
             </div>
+          </form>
         </div>
-    </div>
 
+        <div class="bg-gray-800 text-purple-lighter flex-none w-64 pb-6">
+          <div class="text-white mb-2 mt-3 px-4">
+              <div class="ml-5">
+                  <h1 class="font-semibold text-xl leading-tight mb-1 pt-5">Member List</h1>
+                  <div id="users">
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
   </div>
   <script src="js/main.js"></script>
   </body>
 
   <style>
-    /* width */
     ::-webkit-scrollbar {
       width: 10px;
+      height: 10px;
     }
-    
-    /* Track */
     ::-webkit-scrollbar-track {
       background-color: #f7fafc;
       border-radius: 10px;
     }
      
-    /* Handle */
     ::-webkit-scrollbar-thumb {
       background: #cccccc; 
       border-radius: 10px;
     }
-    
-    /* Handle on hover */
+
     ::-webkit-scrollbar-thumb:hover {
       background: #bababa; 
     }
-
     form  {
-    margin:0;
-    padding:0;
+      margin:0;
+      padding:0;
     }
-    </style>
-  
-
+  </style>
 </html>
