@@ -25,7 +25,6 @@ function appendMessage(data) {
     humanTime = convertTime(data.time);
     if (data.user == chosenUsername) {
         formattedColor = data.color != "#7b7a7f" ? data.color : "#fff"
-        console.log(formattedColor);
         var string = `<div class="flex justify-end">
                 <div class="bg-blue-400 text-white p-4 mt-4 w-3/4 rounded-xl border-2 border-blue-500 shadow-lg">
                     <p class="font-bold pr-1" style="color: ${formattedColor};">${chosenUsername}</p>
@@ -65,7 +64,6 @@ socket.on('cookie', function(cookie) {
 
 // tell this client to update his local username if this event is fired
 socket.on('set username', (username) => {
-    console.log("My username is %s", username)
     chosenUsername = username;
 });
 
@@ -85,7 +83,6 @@ socket.on('system message', (msg) => {
 
 // this event will be fired on new connect
 socket.on('update history', function(data) {
-    console.log("Updating history")
     chat.empty();
     data.forEach(msg => {
         appendMessage(msg);
