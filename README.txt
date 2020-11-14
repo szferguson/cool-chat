@@ -7,7 +7,7 @@ Code: https://github.com/szferguson/cool-chat
 
 How to run:
 -----------------
-!! Ensure port is changed in main.js prior to running if it is not available on CPSC Linux servers
+!! Ensure port is changed in index.js prior to running if it is not available on CPSC Linux servers
 Commands:
    - npm install
    - npm start
