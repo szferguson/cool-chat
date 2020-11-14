@@ -54,7 +54,8 @@ io.sockets.on('connection', socket => {
   users.push(socket.username);
   updateUsernames();
   socket.emit('set username', socket.username);
-  socket.emit('update history', messageHistory);
+  // replay the last 200 messages
+  socket.emit('update history', messageHistory.slice((messageHistory.length - 200), messageHistory.length));
   socket.emit('system message', 'green', "You are now known as <b>" + socket.username + "</b>");
 
   // handle disconnect
